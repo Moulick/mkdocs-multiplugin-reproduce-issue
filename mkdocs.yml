@@ -1,0 +1,31 @@
+site_name: Documentation
+use_directory_urls: false
+docs_dir: docs1
+dev_addr: "0.0.0.0:8000"
+
+theme:
+  name: material
+
+nav:
+  - Backstage:
+      - Home: backstage/README.md
+      - Integration: backstage/docs/integrations/index.md
+      - Publishing: backstage/docs/publishing.md
+
+plugins:
+  - "search"
+  - multirepo:
+      cleanup: false
+      keep_docs_dir: true
+      nav_repos:
+        - name: backstage
+          import_url: "https://github.com/backstage/backstage"
+          # forward slash is needed in '/README.md' so that only the README.md in the root
+          # directory is imported and not all README.md files.
+          imports: [
+              docs/publishing.md,
+              docs/integrations/index.md,
+              /README.md,
+              # asset files needed
+              docs/assets/*,
+            ]
